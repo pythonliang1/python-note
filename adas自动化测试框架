@@ -1,0 +1,48 @@
+框架主要为了用例自动化，  算法评测开发；
+1. 对接数据平台， 接受数据平台用户定义参数，  
+2. 通过参数初始化 rivz模块,  包括各种模式启动， 自动上控nzp/lcc/acc  timeout管理，节点管理 ，remap topic功能;   启动交通流
+3. config模块管理， 支持各种类型config文件修改， json格式， 按行搜索替换，
+4. 故障注入管理， 接受remap_topic 修改内容重新pub
+5. 通过参数checker_name  进程化启动 checker， checker可并行
+     checker内让用户专注逻辑处理
+     定义checker模板  class CHECKER    def run    def end
+     对checker提供日志管理模块， topic sub接口， remap_topic接口，
+6  收集各个checkr模块结果上报数据平台 及失败日志
+
+以及定义了一套通用的checker模板。  用户通过按照步骤配置， 执行测试用例， 无需自己写代码， 即可在任意时间线测试各种topic的各种字段属性值 的逻辑运算
+    
+
+
+通用checker  step按照时间顺序执行： 每个step支持  wait_time, timeout,  topic_name, attr_name, 比较关系，  rule
+
+step1_checker:{
+  wait_time：0 
+  timeout： 0
+  content： {
+	topic_name: a
+	attr_name: b
+	condition： "> < ="
+  }
+  rule： any
+  exit: 1
+}
+step2_set:{
+  topic：
+  attr_name: 
+  value:
+
+}
+
+step3_custom：{
+   func:
+   params:
+
+}
+
+Rviz:
+  yaml文件 配置 车辆， 配置地图
+  
+  
+批量化生成场景文件
+  
+
