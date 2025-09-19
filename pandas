@@ -1,0 +1,36 @@
+1. Pandas
+   效率提升，  使用appply是 for 的三倍，   使用矢量底层运算（c/numpy）是apply的 10-20倍
+   改数据类型为category类型， 大量提高效率
+   series一维数据（只有索引）  formdata二维数据（有行索引 + 列索引的二维 Series 集合）
+   
+   
+   df[(df['age'] > 30) & (df['salary'] > 5000)]
+   df.query("age > 30 and salary > 5000")
+   df.groupby.avg()
+   
+   读大文件： pd.read_csv('sales.csv', chunksize=chunk_size)  指定size
+   df.sort_values(by='total_amount', ascending=False).head(3)  排序取top3
+   df.nlargest(3, 'total_amount') 速度快  取top3
+   df['sales'].rolling(window=3).mean()   滑动窗口，取平均值
+   pd.merge(df1， df2, how='left'， on=['custom_id'])  两表合并
+   df.sort_values（by=['salary'， age], ascending=[False, True]） 多条件排序：先按 salary 降序，再按 age 升序
+   
+   
+   df.head()       # 前5行
+   df.tail(3)      # 后3行
+   df.shape        # 行列数 (3,3) 
+   df.info()       # 数据类型、非空数
+   df.describe()   # 数值列统计信息（均值、标准差、分位数）
+   
+   df.isna()           # 判断缺失
+   df.dropna()         # 删除缺失行
+   df.fillna(0)        # 填充缺失值
+
+	pd.merge(df1, df2, on='key', how='left')   # SQL风格 join
+	pd.concat([df1, df2], axis=0)              # 行合并
+	pd.concat([df1, df2], axis=1)              # 列合并
+
+  
+2. numpy
+   python的科学计算库，高效处理数值数据，
+     ndarry多维数组， 支持向量化运算； 类似python list， 更高效，
